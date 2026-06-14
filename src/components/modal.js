@@ -1,4 +1,5 @@
-import { getFromLocalStorage, setToLocalStorage, updateItemInLocalStorage } from "../storage/storage.js";
+import { addToCart } from "../cart/cart.js";
+import { syncCartView } from "../cart/cartView.js";
 import { contador, addEventListeners } from "./contador.js";
 
 export function Modal(product) {
@@ -49,19 +50,9 @@ export function Modal(product) {
 
     BtnAddToCart.addEventListener('click', () => {
         let qtty = parseInt(document.querySelector(`#contador-${product.id}`).textContent);
-
-        let idx = updateItemInLocalStorage(product.id, qtty);
-
-        if (idx === -1) {
-            let dataStorage = getFromLocalStorage();
-
-            dataStorage.push({
-                id: product.id,
-                qtty: qtty
-            });
-
-            setToLocalStorage(dataStorage);
-        }
+        addToCart(product, qtty);
+        syncCartView();
+        bootstrap.Modal.getInstance(modal)?.hide();
     });
 
     const bootstrapModal = new bootstrap.Modal(modal);

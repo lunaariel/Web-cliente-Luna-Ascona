@@ -11,20 +11,18 @@ export function contador(id) {
 }
 
 export function addEventListeners(id, cantidad = 1) {
-    let btnIncrement = document.querySelector(`#incrementBtn-${id}`);
-    let btnDecrement = document.querySelector(`#decrementBtn-${id}`);
+    let btnDecrease = document.querySelector(`#incrementBtn-${id}`);
+    let btnIncrease = document.querySelector(`#decrementBtn-${id}`);
     let spanContador = document.querySelector(`#contador-${id}`);
 
-    // Botón "-"
-    btnIncrement.addEventListener('click', () => {
+    btnDecrease.addEventListener('click', () => {
         if (cantidad > 1) {
             cantidad--;
             spanContador.textContent = cantidad;
         }
     });
 
-    // Botón "+"
-    btnDecrement.addEventListener('click', () => {
+    btnIncrease.addEventListener('click', () => {
         cantidad++;
         spanContador.textContent = cantidad;
     });
