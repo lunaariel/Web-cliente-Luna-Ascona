@@ -1,8 +1,10 @@
 import { RenderCards } from './components/cards.js';
+import { initCartView } from './cart/cartView.js';
 import { getProducts } from './services/api.js';
 import { initLocalStorage } from './storage/storage.js';
 
 initLocalStorage();
+initCartView();
 
 getProducts().then((products) => {
 

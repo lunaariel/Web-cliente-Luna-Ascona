@@ -16,7 +16,7 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
       <div class="container-fluid">
 
         <a class="navbar-brand" href="#">Navbar</a>
@@ -52,12 +52,20 @@
           </ul>
         </div>
 
+        <div class="navbar-cart ms-auto ms-lg-3 d-flex align-items-center">
+          <button class="btn btn-outline-light cart-toggle-btn position-relative" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+            Carrito
+            <span class="position-absolute badge rounded-pill cart-badge" id="cart-count">0</span>
+          </button>
+        </div>
+
       </div>
     </nav>
 
   </header>
 
-  <main class="container">
+  <main class="container app-content">
     <input type="text" class="form-control mt-5 mb-3" name="search" id="inputSearch"
       placeholder="Search for products...">
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-3" id="product-list">
@@ -92,10 +100,10 @@
         </div>
 
         <div class="d-grid gap-2">
-          <button class="btn btn-outline-secondary" id="clear-cart-btn" type="button">
+          <button class="btn btn-outline-secondary cart-clear-btn" id="clear-cart-btn" type="button">
             Vaciar carrito
           </button>
-          <button class="btn btn-dark" id="checkout-btn" type="button" disabled>
+          <button class="btn btn-dark cart-checkout-btn" id="checkout-btn" type="button" disabled>
             Finalizar compra
           </button>
         </div>
