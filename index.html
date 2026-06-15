@@ -79,6 +79,28 @@
     <p class="mt-5 fs-4">&copy; 2026 My Website</p>
   </footer>
 
+  <div class="modal fade" id="checkoutSuccessModal" tabindex="-1" aria-labelledby="checkoutSuccessModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content success-modal">
+        <div class="modal-header">
+          <h5 class="modal-title" id="checkoutSuccessModalLabel">Compra exitosa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body text-center">
+          <div class="success-modal-icon mb-3">✓</div>
+          <p class="mb-2">Tu compra fue procesada correctamente.</p>
+          <p class="success-modal-text mb-0">Gracias por elegirnos. Tu carrito fue vaciado.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="cartOffcanvasLabel">Tu carrito</h5>

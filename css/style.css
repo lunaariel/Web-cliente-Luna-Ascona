@@ -193,6 +193,28 @@ body {
     font-size: 19px;
 }
 
+.success-modal {
+    border-color: var(--accent) !important;
+}
+
+.success-modal-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    line-height: 1;
+}
+
+.success-modal-text {
+    color: var(--text-main) !important;
+}
+
 .btn-close {
     filter: invert(1);
 }

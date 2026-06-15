@@ -79,6 +79,7 @@ export function syncCartView() {
 function bindCartEvents() {
     const cartItemsContainer = document.querySelector("#cart-items");
     const clearCartBtn = document.querySelector("#clear-cart-btn");
+    const checkoutBtn = document.querySelector("#checkout-btn");
 
     cartItemsContainer.addEventListener("click", (event) => {
         const button = event.target.closest("[data-action]");
@@ -108,6 +109,18 @@ function bindCartEvents() {
     clearCartBtn.addEventListener("click", () => {
         clearCart();
         syncCartView();
+    });
+
+    checkoutBtn.addEventListener("click", () => {
+        const successModalElement = document.querySelector("#checkoutSuccessModal");
+        const cartOffcanvasElement = document.querySelector("#cartOffcanvas");
+        const bootstrapOffcanvas = bootstrap.Offcanvas.getInstance(cartOffcanvasElement);
+        const successModal = new bootstrap.Modal(successModalElement);
+
+        clearCart();
+        syncCartView();
+        bootstrapOffcanvas?.hide();
+        successModal.show();
     });
 }
 
