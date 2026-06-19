@@ -7,54 +7,144 @@
   <title>Bootstrap demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
       <div class="container-fluid">
+
         <a class="navbar-brand" href="#">Navbar</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
+
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="#" id="home">Home</a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
+              <a class="nav-link" href="#" id="electronics">electronics</a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link" href="#" id="jewelery">jewelery</a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              <a class="nav-link" href="#" id="mens-clothing">men's clothing</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="women-s-clothing">women's clothing</a>
+            </li>
+
           </ul>
         </div>
+
+        <div class="navbar-cart ms-auto ms-lg-3 d-flex align-items-center">
+          <button class="btn btn-outline-light cart-toggle-btn position-relative" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+            Cart
+            <span class="position-absolute badge rounded-pill cart-badge" id="cart-count">0</span>
+          </button>
+        </div>
+
       </div>
     </nav>
 
   </header>
 
-  <main class="container">
-    <input type="text" name="search" id="" value="search" class="form-control mt-3 mb-3" placeholder="Search for products...">
-    <div class="row row-cols-1 row-cols-md-4 g-4 mt-3" id="product-list">
+  <main class="container app-content">
+    <input type="text" class="form-control mt-5 mb-3" name="search" id="inputSearch"
+      placeholder="Search for products...">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3" id="product-list">
     </div>
     <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
     </div>
   </main>
 
-  <footer>
-
+  <footer class="text-center bg-dark text-white py-4 mt-4">
+    <p class="footer-text mb-0">&copy; 2026 My Website</p>
   </footer>
+
+  <div class="toast-container custom-toast-container">
+    <div id="cartToast" class="toast custom-cart-toast border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="toast-header custom-cart-toast-header">
+        <strong class="me-auto">Added to cart</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        <div class="toast-product-name" id="cartToastProduct">Product</div>
+        <div class="toast-product-quantity" id="cartToastQuantity">Quantity: 1</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="checkoutSuccessModal" tabindex="-1" aria-labelledby="checkoutSuccessModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content success-modal">
+        <div class="modal-header">
+          <h5 class="modal-title" id="checkoutSuccessModalLabel">Purchase successful</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body text-center">
+          <div class="success-modal-icon mb-3">&#10003;</div>
+          <p class="mb-2">Your purchase was processed successfully.</p>
+          <p class="success-modal-text mb-0">Thanks for choosing us. Your cart has been cleared.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="cartOffcanvasLabel">Your cart</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="cart-items" class="cart-items"></div>
+
+      <div class="cart-summary mt-auto pt-3 border-top">
+        <div class="d-flex justify-content-between mb-2">
+          <span>Items</span>
+          <span id="cart-total-items">0</span>
+        </div>
+
+        <div class="d-flex justify-content-between mb-3">
+          <strong>Total</strong>
+          <strong id="cart-total">$0.00</strong>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-outline-secondary cart-clear-btn" id="clear-cart-btn" type="button">
+            Clear cart
+          </button>
+          <button class="btn btn-dark cart-checkout-btn" id="checkout-btn" type="button" disabled>
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
@@ -63,3 +153,4 @@
 </body>
 
 </html>
+
