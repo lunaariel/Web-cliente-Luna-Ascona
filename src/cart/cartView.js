@@ -15,8 +15,8 @@ function formatPrice(price) {
 function renderEmptyCart() {
     return `
         <div class="cart-empty-state">
-            <p class="mb-1">Tu carrito esta vacio.</p>
-            <small>Agrega productos desde el detalle.</small>
+            <p class="mb-1">Your cart is empty.</p>
+            <small>Add products from the details view.</small>
         </div>
     `;
 }

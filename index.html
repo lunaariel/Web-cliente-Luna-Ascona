@@ -55,7 +55,7 @@
         <div class="navbar-cart ms-auto ms-lg-3 d-flex align-items-center">
           <button class="btn btn-outline-light cart-toggle-btn position-relative" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
-            Carrito
+            Cart
             <span class="position-absolute badge rounded-pill cart-badge" id="cart-count">0</span>
           </button>
         </div>
@@ -84,18 +84,18 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content success-modal">
         <div class="modal-header">
-          <h5 class="modal-title" id="checkoutSuccessModalLabel">Compra exitosa</h5>
+          <h5 class="modal-title" id="checkoutSuccessModalLabel">Purchase successful</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body text-center">
           <div class="success-modal-icon mb-3">✓</div>
-          <p class="mb-2">Tu compra fue procesada correctamente.</p>
-          <p class="success-modal-text mb-0">Gracias por elegirnos. Tu carrito fue vaciado.</p>
+          <p class="mb-2">Your purchase was processed successfully.</p>
+          <p class="success-modal-text mb-0">Thanks for choosing us. Your cart has been cleared.</p>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Aceptar</button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">OK</button>
         </div>
       </div>
     </div>
@@ -103,7 +103,7 @@
 
   <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="cartOffcanvasLabel">Tu carrito</h5>
+      <h5 class="offcanvas-title" id="cartOffcanvasLabel">Your cart</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
@@ -112,7 +112,7 @@
 
       <div class="cart-summary mt-auto pt-3 border-top">
         <div class="d-flex justify-content-between mb-2">
-          <span>Productos</span>
+          <span>Items</span>
           <span id="cart-total-items">0</span>
         </div>
 
@@ -123,10 +123,10 @@
 
         <div class="d-grid gap-2">
           <button class="btn btn-outline-secondary cart-clear-btn" id="clear-cart-btn" type="button">
-            Vaciar carrito
+            Clear cart
           </button>
           <button class="btn btn-dark cart-checkout-btn" id="checkout-btn" type="button" disabled>
-            Finalizar compra
+            Checkout
           </button>
         </div>
       </div>

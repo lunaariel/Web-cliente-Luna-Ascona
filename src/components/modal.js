@@ -26,7 +26,7 @@ export function Modal(product) {
 
                     <div class="col-md-6">
                         <p>${product.description}</p>
-                        <p><strong>Precio: USD $${product.price}</strong></p>
+                        <p><strong>Price: USD $${product.price}</strong></p>
 
                         ${contador(product.id)}
                     </div>
@@ -35,8 +35,8 @@ export function Modal(product) {
             </div>
                 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-dark" id="addToCartBtn-${product.id}">Agregar a carrito</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" id="addToCartBtn-${product.id}">Add to cart</button>
             </div>
         </div>
     </div>
