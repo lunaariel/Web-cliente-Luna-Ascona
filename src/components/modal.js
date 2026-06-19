@@ -19,7 +19,7 @@ export function Modal(product) {
                     <div class="col-md-6 text-center">
                         <img 
                             src="${product.image}" 
-                            style="height: 400px; width: 100%; object-fit: contain;"
+                            class="product-modal-image"
                             alt="${product.title}"
                         >
                     </div>

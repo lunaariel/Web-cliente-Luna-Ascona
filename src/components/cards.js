@@ -11,7 +11,7 @@ export function RenderCards(products) {
     products.forEach((p) => {
 
         template += `
-            <div class="col">
+            <div class="col product-col">
                 <div
                     class="card card-product justify-content-center align-items-center"
                     id="card-${p.id}"
@@ -19,8 +19,10 @@ export function RenderCards(products) {
                     tabindex="0"
                     aria-label="View details for ${p.title}"
                 >
-                    <img src="${p.image}" class="card-img-top card-product-image" alt="${p.title}">
-                    <span class="card-details-hint">View details</span>
+                    <div class="card-product-media">
+                        <img src="${p.image}" class="card-img-top card-product-image" alt="${p.title}">
+                        <span class="card-details-hint">View details</span>
+                    </div>
                     
                     <div class="card-body card-product-body">
                         <h5 class="card-title text-truncate">${p.title}</h5>
