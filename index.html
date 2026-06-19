@@ -79,6 +79,19 @@
     <p class="footer-text mb-0">&copy; 2026 My Website</p>
   </footer>
 
+  <div class="toast-container custom-toast-container">
+    <div id="cartToast" class="toast custom-cart-toast border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="toast-header custom-cart-toast-header">
+        <strong class="me-auto">Added to cart</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        <div class="toast-product-name" id="cartToastProduct">Product</div>
+        <div class="toast-product-quantity" id="cartToastQuantity">Quantity: 1</div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="checkoutSuccessModal" tabindex="-1" aria-labelledby="checkoutSuccessModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

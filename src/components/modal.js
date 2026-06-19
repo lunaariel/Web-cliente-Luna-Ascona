@@ -1,5 +1,5 @@
 import { addToCart } from "../cart/cart.js";
-import { syncCartView } from "../cart/cartView.js";
+import { showAddToCartToast, syncCartView } from "../cart/cartView.js";
 import { contador, addEventListeners } from "./contador.js";
 
 export function Modal(product) {
@@ -52,6 +52,7 @@ export function Modal(product) {
         let qtty = parseInt(document.querySelector(`#contador-${product.id}`).textContent);
         addToCart(product, qtty);
         syncCartView();
+        showAddToCartToast(product.title, qtty);
         bootstrap.Modal.getInstance(modal)?.hide();
     });
 

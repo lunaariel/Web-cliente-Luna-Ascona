@@ -12,6 +12,22 @@ function formatPrice(price) {
     return `$${price.toFixed(2)}`;
 }
 
+export function showAddToCartToast(productTitle, quantity) {
+    const toastElement = document.querySelector("#cartToast");
+    const toastProduct = document.querySelector("#cartToastProduct");
+    const toastQuantity = document.querySelector("#cartToastQuantity");
+
+    toastProduct.textContent = productTitle;
+    toastQuantity.textContent = `Quantity: ${quantity}`;
+
+    const toast = bootstrap.Toast.getOrCreateInstance(toastElement, {
+        delay: 1500,
+        autohide: true
+    });
+
+    toast.show();
+}
+
 function renderEmptyCart() {
     return `
         <div class="cart-empty-state">

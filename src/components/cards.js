@@ -1,5 +1,5 @@
 import { addToCart } from "../cart/cart.js";
-import { syncCartView } from "../cart/cartView.js";
+import { showAddToCartToast, syncCartView } from "../cart/cartView.js";
 import { Modal } from "./modal.js";
 
 export function RenderCards(products) {
@@ -73,6 +73,7 @@ export function RenderCards(products) {
             event.stopPropagation();
             addToCart(p, 1);
             syncCartView();
+            showAddToCartToast(p.title, 1);
         });
     });
 }
