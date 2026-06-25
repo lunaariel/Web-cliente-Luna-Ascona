@@ -35,6 +35,12 @@ body {
     min-height: 76px;
 }
 
+.navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .navbar-brand {
     color: var(--text-main) !important;
     font-size: 24px;
@@ -54,6 +60,8 @@ body {
 
 .navbar-collapse {
     flex-grow: 1;
+    order: 3;
+    width: 100%;
 }
 
 .navbar-nav {
@@ -61,7 +69,15 @@ body {
     flex-wrap: wrap;
 }
 
+.navbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
 .navbar-cart {
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
 }
 
@@ -71,6 +87,10 @@ body {
     letter-spacing: 1px;
     padding: 0.55rem 1rem;
     line-height: 1;
+}
+
+.navbar-toggler {
+    margin-left: 0 !important;
 }
 
 .cart-toggle-btn:hover {
@@ -481,6 +501,7 @@ footer {
 .cart-item-controls .btn {
     min-width: 32px;
     padding: 0.1rem 0.4rem;
+    color: #9CA3AF;
 }
 
 .cart-remove-btn {
@@ -544,7 +565,7 @@ footer {
     }
 
     .navbar-cart {
-        margin-right: 0.75rem;
+        margin-right: 0;
     }
 
     .cart-toggle-btn {
@@ -728,5 +749,26 @@ footer {
 
     .toast-product-quantity {
         font-size: 16px;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar .container-fluid {
+        flex-wrap: nowrap;
+    }
+
+    .navbar-collapse {
+        order: 2;
+        width: auto;
+        margin-left: 2rem;
+    }
+
+    .navbar-controls {
+        order: 3;
+        margin-left: auto;
+    }
+
+    .navbar-cart {
+        margin-left: 1rem;
     }
 }
