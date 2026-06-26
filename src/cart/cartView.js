@@ -9,7 +9,13 @@ import {
 } from "./cart.js";
 
 function formatPrice(price) {
-    return `$${price.toFixed(2)}`;
+    let value = Number(price);
+
+    if (isNaN(value)) {
+        value = 0;
+    }
+
+    return `$${value.toFixed(2)}`;
 }
 
 export function showAddToCartToast(productTitle, quantity) {
@@ -17,8 +23,12 @@ export function showAddToCartToast(productTitle, quantity) {
     const toastProduct = document.querySelector("#cartToastProduct");
     const toastQuantity = document.querySelector("#cartToastQuantity");
 
-    toastProduct.textContent = productTitle;
-    toastQuantity.textContent = `Quantity: ${quantity}`;
+    if (!toastElement || !toastProduct || !toastQuantity) {
+        return;
+    }
+
+    toastProduct.textContent = productTitle || "Product";
+    toastQuantity.textContent = `Quantity: ${quantity || 1}`;
 
     const toast = bootstrap.Toast.getOrCreateInstance(toastElement, {
         delay: 1500,
@@ -38,33 +48,65 @@ function renderEmptyCart() {
 }
 
 function renderCartItem(item) {
+    let id = item.id;
+    let title = item.title || "Product";
+    let image = item.image || "";
+    let price = Number(item.price);
+
+    if (isNaN(price)) {
+        price = 0;
+    }
+
+    let qtty = Number(item.qtty);
+
+    if (isNaN(qtty) || qtty < 1) {
+        qtty = 1;
+    }
+
     return `
         <article class="cart-item">
-            <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+            <img src="${image}" alt="${title}" class="cart-item-image">
 
             <div class="cart-item-content">
                 <div class="d-flex justify-content-between align-items-start gap-2">
-                    <h6 class="cart-item-title mb-1">${item.title}</h6>
+                    <h6 class="cart-item-title mb-1">${title}</h6>
+
                     <button
                         class="btn btn-sm btn-outline-secondary cart-remove-btn"
                         type="button"
                         data-action="remove"
-                        data-id="${item.id}"
+                        data-id="${id}"
                     >
                         x
                     </button>
                 </div>
 
-                <p class="cart-item-price mb-2">${formatPrice(item.price)}</p>
+                <p class="cart-item-price mb-2">${formatPrice(price)}</p>
 
                 <div class="d-flex justify-content-between align-items-center gap-3">
                     <div class="cart-item-controls">
-                        <button type="button" class="btn btn-sm btn-outline-dark" data-action="decrease" data-id="${item.id}">-</button>
-                        <span>${item.qtty}</span>
-                        <button type="button" class="btn btn-sm btn-outline-dark" data-action="increase" data-id="${item.id}">+</button>
+                        <button 
+                            type="button" 
+                            class="btn btn-sm btn-outline-dark" 
+                            data-action="decrease" 
+                            data-id="${id}"
+                        >
+                            -
+                        </button>
+
+                        <span>${qtty}</span>
+
+                        <button 
+                            type="button" 
+                            class="btn btn-sm btn-outline-dark" 
+                            data-action="increase" 
+                            data-id="${id}"
+                        >
+                            +
+                        </button>
                     </div>
 
-                    <strong>${formatPrice(item.price * item.qtty)}</strong>
+                    <strong>${formatPrice(price * qtty)}</strong>
                 </div>
             </div>
         </article>
@@ -78,9 +120,23 @@ export function syncCartView() {
     const cartTotal = document.querySelector("#cart-total");
     const checkoutBtn = document.querySelector("#checkout-btn");
 
+    if (!cartItemsContainer || !cartCount || !cartTotalItems || !cartTotal || !checkoutBtn) {
+        return;
+    }
+
     const cartItems = getCartItems();
-    const totalItems = getCartCount();
-    const totalPrice = getCartTotal();
+
+    let totalItems = Number(getCartCount());
+
+    if (isNaN(totalItems)) {
+        totalItems = 0;
+    }
+
+    let totalPrice = Number(getCartTotal());
+
+    if (isNaN(totalPrice)) {
+        totalPrice = 0;
+    }
 
     cartItemsContainer.innerHTML = cartItems.length
         ? cartItems.map(renderCartItem).join("")
@@ -96,6 +152,10 @@ function bindCartEvents() {
     const cartItemsContainer = document.querySelector("#cart-items");
     const clearCartBtn = document.querySelector("#clear-cart-btn");
     const checkoutBtn = document.querySelector("#checkout-btn");
+
+    if (!cartItemsContainer || !clearCartBtn || !checkoutBtn) {
+        return;
+    }
 
     cartItemsContainer.addEventListener("click", (event) => {
         const button = event.target.closest("[data-action]");
@@ -130,13 +190,19 @@ function bindCartEvents() {
     checkoutBtn.addEventListener("click", () => {
         const successModalElement = document.querySelector("#checkoutSuccessModal");
         const cartOffcanvasElement = document.querySelector("#cartOffcanvas");
-        const bootstrapOffcanvas = bootstrap.Offcanvas.getInstance(cartOffcanvasElement);
-        const successModal = new bootstrap.Modal(successModalElement);
 
         clearCart();
         syncCartView();
-        bootstrapOffcanvas?.hide();
-        successModal.show();
+
+        if (cartOffcanvasElement) {
+            const bootstrapOffcanvas = bootstrap.Offcanvas.getInstance(cartOffcanvasElement);
+            bootstrapOffcanvas?.hide();
+        }
+
+        if (successModalElement) {
+            const successModal = new bootstrap.Modal(successModalElement);
+            successModal.show();
+        }
     });
 }
 
