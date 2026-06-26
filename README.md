@@ -1,73 +1,43 @@
-# Luna / Ascona Storefront
+﻿# Tienda Web Cliente
 
-Este proyecto consiste en una tienda online del lado del cliente construida con JavaScript vanilla, Bootstrap 5 y la [Fake Store API](https://fakestoreapi.com/). Su objetivo es demostrar una solución front-end simple para explorar productos, ver su detalle, administrar un carrito local y practicar buenas separaciones de lógica sin sobre-complejizar la arquitectura.
+Este proyecto fue desarrollado por Ariel Luna y Mateo Ascona para la materia **Laboratorio de Aplicación Web Cliente** de ISTEA.
 
-## Lectura rápida
+La aplicación consiste en una tienda online del lado del cliente construida con **HTML**, **CSS**, **JavaScript vanilla** y **Bootstrap 5**. Los productos se obtienen desde la [Fake Store API](https://fakestoreapi.com/), y el objetivo principal fue aplicar conceptos de manipulación del DOM, consumo de APIs, modularización del código y persistencia local de datos.
 
-1. Abrir `C:\Users\mateo\Desktop\ISTEA\Lab. Apps Web Cliente\Web-cliente-Luna-Ascona\index.html` en el navegador, o servir la carpeta con un servidor estático simple.
-2. Explorar productos, filtrar por categoría o buscar por nombre.
-3. Abrir una card para ver el detalle, agregar productos al carrito y simular una compra.
+## Objetivo
 
-## Objetivo del proyecto
+El trabajo busca representar un flujo básico de e-commerce en el navegador, sin depender de frameworks ni de un backend propio. La idea fue resolver una aplicación funcional, entendible y facil de mantener dentro del alcance de la materia.
 
-El proyecto fue desarrollado para practicar un flujo de e-commerce pequeño sin incorporar frameworks ni herramientas innecesarias. Los focos principales fueron:
+## Funcionalidades
 
-- consumir una API externa de productos
-- renderizar un catálogo responsive
-- separar la lógica en módulos pequeños y entendibles
-- persistir el carrito con `localStorage`
-- mantener un código fácil de extender y de trabajar en equipo
+La aplicación permite:
 
-## Qué incluye la aplicación
+- visualizar un catálogo de productos
+- buscar productos por nombre
+- filtrar productos por categoría
+- abrir el detalle de cada producto en un modal
+- agregar productos al carrito
+- guardar el carrito en `localStorage`
+- vaciar el carrito
+- simular una compra mediante un checkout visual
 
-| Área | Implementación |
-|------|----------------|
-| Fuente de productos | Fake Store API mediante `fetch()` |
-| Stack de interfaz | HTML + CSS + Bootstrap 5 |
-| Persistencia | `localStorage` |
-| Descubrimiento de productos | Buscador + filtros por categoría |
-| Detalle de producto | Modal de Bootstrap |
-| Carrito | Offcanvas de Bootstrap + helpers propios |
-| Feedback visual | Toast al agregar + modal de compra exitosa |
-| Responsive | Desktop, Tablet y Mobile |
+## Tecnologías utilizadas
 
-## Cómo se construyó
+- **HTML5**
+- **CSS3**
+- **JavaScript (ES Modules)**
+- **Bootstrap 5**
+- **Fake Store API**
+- **localStorage**
 
-La aplicación sigue una estructura modular simple:
+## Ejecución del proyecto
 
-- `src/services/api.js` obtiene los productos desde la API.
-- `src/components/cards.js` renderiza la grilla y controla las interacciones de las cards.
-- `src/components/modal.js` arma el modal de detalle del producto.
-- `src/components/contador.js` administra el selector de cantidad dentro del modal.
-- `src/cart/cart.js` contiene las operaciones de datos del carrito.
-- `src/cart/cartView.js` se ocupa del render del carrito, totales, toast y simulación de checkout.
-- `src/storage/storage.js` encapsula el acceso a `localStorage`.
-- `src/index.js` inicializa la aplicación y conecta filtros/búsqueda con el render.
+No se requiere proceso de build ni instalación de dependencias.
 
-### Decisiones principales de implementación
+Para ejecutar el proyecto:
 
-1. **JavaScript vanilla en módulos**  
-   Se priorizó una solución liviana, clara y fácil de seguir.
-
-2. **Lógica del carrito separada**  
-   Los datos y la vista del carrito se dividieron en archivos dedicados para reducir acoplamiento y conflictos de merge.
-
-3. **Bootstrap para interacciones**  
-   Se utilizaron modal, offcanvas y toast para resolver interacciones comunes sin agregar dependencias nuevas.
-
-4. **Responsive en tres niveles**  
-   La interfaz fue adaptada para Desktop, Tablet y Mobile ajustando anchos, alturas, espaciados y distribución de componentes.
-
-## Flujo principal de usuario
-
-1. Se consultan los productos desde Fake Store API.
-2. Se renderiza el catálogo en formato de cards.
-3. El usuario puede filtrar por categoría o buscar por nombre.
-4. Al hacer click en una card, se abre el detalle del producto.
-5. El producto puede agregarse al carrito desde la card o desde el modal.
-6. El carrito se guarda en `localStorage`.
-7. Un toast informa qué producto se agregó y con qué cantidad.
-8. El checkout se simula vaciando el carrito y mostrando un modal de compra exitosa.
+1. Abrir el archivo `index.html` en un navegador.
+2. Como alternativa, levantar la carpeta con cualquier servidor estático local.
 
 ## Estructura del proyecto
 
@@ -77,6 +47,7 @@ Web-cliente-Luna-Ascona/
 ├── README.md
 ├── css/
 │   └── style.css
+├── resources/
 └── src/
     ├── index.js
     ├── cart/
@@ -92,14 +63,43 @@ Web-cliente-Luna-Ascona/
         └── storage.js
 ```
 
+## Descripción de módulos
+
+- `src/index.js`: inicializa la aplicación, obtiene los productos y conecta búsqueda y filtros.
+- `src/services/api.js`: realiza la consulta a la API de productos.
+- `src/components/cards.js`: renderiza las cards y gestiona sus interacciones.
+- `src/components/modal.js`: muestra el detalle del producto seleccionado.
+- `src/components/contador.js`: administra la cantidad elegida dentro del modal.
+- `src/cart/cart.js`: contiene la lógica del carrito.
+- `src/cart/cartView.js`: renderiza el carrito, actualiza totales y controla el checkout simulado.
+- `src/storage/storage.js`: encapsula el acceso a `localStorage`.
+
+## Flujo principal de uso
+
+1. La aplicación consulta los productos desde Fake Store API.
+2. Los productos se renderizan en forma de cards.
+3. El usuario puede buscar o filtrar por categoría.
+4. Al seleccionar un producto, se abre un modal con su detalle.
+5. El producto puede agregarse al carrito desde la card o desde el modal.
+6. El carrito queda almacenado localmente en el navegador.
+7. El checkout vacía el carrito y muestra una confirmación visual de compra.
+
 ## Consideraciones
 
-- El flujo de checkout es únicamente una simulación visual.
-- El carrito se guarda localmente en el navegador.
-- El proyecto no requiere build step para ejecutarse.
+- El checkout implementado es una simulación visual; no existe procesamiento real de pagos.
+- El carrito se conserva localmente mediante `localStorage`.
+- Si la API no responde correctamente, los productos no podrán cargarse.
+- Parte de los textos de la interfaz quedaron en inglés para mantener consistencia con los datos y el enfoque visual del proyecto.
 
-## Próximos pasos posibles
+## Posibles mejoras
 
-- agregar mejor manejo de errores ante fallas de la API
-- reforzar accesibilidad y navegación por teclado
-- conectar el checkout a una lógica real de back-end
+- incorporar manejo de errores más claro ante fallas de la API
+- mejorar accesibilidad y navegación por teclado
+- agregar validaciones visuales adicionales
+- conectar el checkout con una lógica real de backend
+- ampliar filtros y opciones de búsqueda
+
+## Autores
+
+- Ariel Luna
+- Mateo Ascona
