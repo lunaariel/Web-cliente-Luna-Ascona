@@ -6,7 +6,7 @@ La aplicación consiste en una tienda online del lado del cliente construida con
 
 ## Objetivo
 
-El trabajo busca representar un flujo básico de e-commerce en el navegador, sin depender de frameworks ni de un backend propio. La idea fue resolver una aplicación funcional, entendible y facil de mantener dentro del alcance de la materia.
+El trabajo busca representar un flujo básico de e-commerce tanto en navegador como en mobile.
 
 ## Funcionalidades
 
@@ -27,8 +27,6 @@ La aplicación permite:
 - **CSS3**
 - **JavaScript (ES Modules)**
 - **Bootstrap 5**
-- **Fake Store API**
-- **localStorage**
 
 ## Ejecución del proyecto
 
@@ -89,12 +87,10 @@ Web-cliente-Luna-Ascona/
 - El checkout implementado es una simulación visual; no existe procesamiento real de pagos.
 - El carrito se conserva localmente mediante `localStorage`.
 - Si la API no responde correctamente, los productos no podrán cargarse.
-- Parte de los textos de la interfaz quedaron en inglés para mantener consistencia con los datos y el enfoque visual del proyecto.
 
 ## Posibles mejoras
 
 - incorporar manejo de errores más claro ante fallas de la API
-- mejorar accesibilidad y navegación por teclado
 - agregar validaciones visuales adicionales
 - conectar el checkout con una lógica real de backend
 - ampliar filtros y opciones de búsqueda
